@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog</title>
+  <link rel="stylesheet" href="/styles/main.css">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Crimson+Text:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+
+  <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>My Blog</h1>
+    <a id="newPostBtn" href="/new">New Post</a>
+    <ul id="postsList">
+      <% posts.forEach(post=> { %>
+        <li>
+          <h2>
+            <%=post.title%>
+          </h2>
+          <small class="date">
+            <small>Posted on: <%= new Date(post.date).toLocaleString('en-US', { 
+    weekday: 'short', year: 'numeric', month: 'short', day: 'numeric', 
+    hour: 'numeric', minute: '2-digit' 
+}) %></small>
+
+          </small>
+
+          <p>
+            <%=post.content%>
+          </p>
+         <p style="margin-top: 10px; color: #777;">By: <strong class="author-name"><%= post.author %></strong></p>
+          
+          <div class="button-group">
+  <a href="/edit/<%= post.id %>" class="edit">Edit</a>
+  <a href="/api/posts/delete/<%= post.id %>" class="delete">Delete</a>
+</div>
+
+        </li>
+        <% }); %>
+    </ul>
+  </div>
+</body>
+
+</html>
